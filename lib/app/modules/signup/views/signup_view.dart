@@ -17,6 +17,7 @@ class SignupView extends GetView<SignupController> {
   final _formKey = GlobalKey<FormState>();
   final _textEmail = TextEditingController();
   final _textPassword = TextEditingController();
+  final _textDealerCode = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -91,6 +92,23 @@ class SignupView extends GetView<SignupController> {
                                   ),
                                   validator: (value) =>
                                       validateNotEmpty(value!, 'Your Password'),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: defaultPadding),
+                                child: TextFormField(
+                                  textInputAction: TextInputAction.done,
+                                  obscureText: false,
+                                  cursorColor: primaryColor,
+                                  controller: _textDealerCode,
+                                  decoration: const InputDecoration(
+                                    hintText: "Your Member Code",
+                                    prefixIcon:
+                                        Icon(Icons.card_membership_outlined),
+                                  ),
+                                  validator: (value) => validateNotEmpty(
+                                      value!, 'Your Member Code'),
                                 ),
                               ),
                               Container(
