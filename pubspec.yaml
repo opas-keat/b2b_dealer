@@ -8,13 +8,14 @@ environment:
 dependencies: 
   cupertino_icons: ^1.0.2
   get: 4.6.5
+  dio: ^4.0.6
   nhost_sdk: ^3.0.4
-  nhost_flutter_graphql: ^2.1.0
+  nhost_flutter_graphql: ^2.0.4
   google_fonts: ^3.0.1
   flutter_svg: ^1.1.6
   flutter: 
     sdk: flutter
-
+ 
 dev_dependencies: 
   flutter_lints: ^2.0.0
   flutter_test: 
@@ -23,5 +24,5 @@ dev_dependencies:
 flutter: 
   uses-material-design: true
 
-assets:
+assets: 
   - web/assets/

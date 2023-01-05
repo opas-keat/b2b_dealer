@@ -11,8 +11,9 @@ import '../../../shared/responsive.dart';
 import '../../../shared/validator.dart';
 import '../controllers/signin_controller.dart';
 
-class SigninView extends GetView<SigninController> {
+class SigninView extends StatelessWidget {
   SigninView({Key? key}) : super(key: key);
+  SigninController controller = Get.put(SigninController());
 
   final _formKey = GlobalKey<FormState>();
   final _textEmail = TextEditingController();

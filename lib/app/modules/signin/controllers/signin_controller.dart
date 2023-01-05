@@ -5,6 +5,8 @@ import 'package:nhost_sdk/nhost_sdk.dart';
 
 import '../../../shared/constant.dart';
 
+final title = "SigninController";
+
 class SigninController extends GetxController {
   RxString signInError = ''.obs;
   @override

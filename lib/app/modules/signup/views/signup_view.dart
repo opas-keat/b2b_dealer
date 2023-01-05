@@ -11,9 +11,9 @@ import '../../../shared/responsive.dart';
 import '../../../shared/validator.dart';
 import '../controllers/signup_controller.dart';
 
-class SignupView extends GetView<SignupController> {
+class SignupView extends StatelessWidget {
   SignupView({Key? key}) : super(key: key);
-
+  SignupController controller = Get.put(SignupController());
   final _formKey = GlobalKey<FormState>();
   final _textEmail = TextEditingController();
   final _textPassword = TextEditingController();
@@ -23,6 +23,7 @@ class SignupView extends GetView<SignupController> {
   Widget build(BuildContext context) {
     _textEmail.text = "ppsuperwheel.b2b@gmail.com";
     _textPassword.text = "P@ssw0rd";
+    _textDealerCode.text = "CL1713";
     return Scaffold(
       appBar: AppBar(
         centerTitle: false,
@@ -122,43 +123,40 @@ class SignupView extends GetView<SignupController> {
                                           .signUpWithEmailPassword(
                                         email: _textEmail.text,
                                         password: _textPassword.text,
+                                        dealerCode: _textDealerCode.text,
                                       );
-                                      result
-                                          ? () {
-                                              Get.snackbar(
-                                                'Info',
-                                                'Please verify email and sign',
-                                                backgroundColor: accentColor,
-                                                snackPosition:
-                                                    SnackPosition.BOTTOM,
-                                                colorText: Colors.white,
-                                                icon: const Icon(
-                                                  Icons.lock_person_outlined,
-                                                  color: Colors.white,
-                                                ),
-                                                isDismissible: true,
-                                                margin: const EdgeInsets.all(
-                                                  defaultPadding,
-                                                ),
-                                              );
-                                              Get.offAllNamed(Routes.HOME);
-                                            }
-                                          : Get.snackbar(
-                                              'Error',
-                                              controller.signUpError.value,
-                                              backgroundColor: accentColor,
-                                              snackPosition:
-                                                  SnackPosition.BOTTOM,
-                                              colorText: Colors.white,
-                                              icon: const Icon(
-                                                Icons.lock_person_outlined,
-                                                color: Colors.white,
-                                              ),
-                                              isDismissible: true,
-                                              margin: const EdgeInsets.all(
-                                                defaultPadding,
-                                              ),
-                                            );
+                                      if (result) {
+                                        Get.defaultDialog(
+                                          title: "Signup Finish.",
+                                          middleText:
+                                              "Please verify email and signin",
+                                          backgroundColor: primaryColor,
+                                          titleStyle: const TextStyle(
+                                              color: Colors.white),
+                                          middleTextStyle: const TextStyle(
+                                              color: Colors.white),
+                                          radius: 30,
+                                          buttonColor: primaryColor,
+                                          onConfirm: () =>
+                                              Get.offAllNamed(Routes.SIGNIN),
+                                        );
+                                      } else {
+                                        Get.snackbar(
+                                          'Error',
+                                          controller.signUpError.value,
+                                          backgroundColor: accentColor,
+                                          snackPosition: SnackPosition.BOTTOM,
+                                          colorText: Colors.white,
+                                          icon: const Icon(
+                                            Icons.lock_person_outlined,
+                                            color: Colors.white,
+                                          ),
+                                          isDismissible: true,
+                                          margin: const EdgeInsets.all(
+                                            defaultPadding,
+                                          ),
+                                        );
+                                      }
                                     }
                                   },
                                 ),
