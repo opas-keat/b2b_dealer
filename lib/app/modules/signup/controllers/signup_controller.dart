@@ -29,6 +29,7 @@ class SignupController extends GetxController {
       final authResponse =
           await nhostClient.auth.signUp(email: email, password: password);
       return authResponse.user != null ? true : false;
+      //test
     } on ApiException catch (e) {
       log('${e.responseBody['message']}');
       signUpError.value = '${e.responseBody['message']}';
