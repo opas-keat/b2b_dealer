@@ -4,7 +4,7 @@ import 'package:dio/dio.dart';
 import '../api_params.dart';
 import '../api_utils.dart';
 
-class BaseRepo<T> {
+class BaseService<T> {
   Future<T> get({
     required String apiURL,
     Map<String, dynamic>? queryParameters,

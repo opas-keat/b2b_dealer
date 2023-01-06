@@ -5,9 +5,8 @@ import 'package:nhost_sdk/nhost_sdk.dart';
 
 import '../../../api/services/dealer_service.dart';
 import '../../../shared/constant.dart';
-import '../../../shared/utils/log_util.dart';
 
-final title = "SignupController";
+final logTitle = "SignupController";
 
 class SignupController extends GetxController {
   RxString signUpError = ''.obs;

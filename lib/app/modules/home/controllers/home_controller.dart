@@ -1,11 +1,22 @@
+import 'package:graphql/client.dart';
+import 'package:nhost_graphql_adapter/nhost_graphql_adapter.dart';
 import 'package:get/get.dart';
 
-class HomeController extends GetxController {
-  //TODO: Implement HomeController
+import '../../../data/graphql/graphql_query.dart';
+import '../../../data/models/menu.dart';
+import '../../../shared/constant.dart';
+import '../../../shared/utils/log_util.dart';
 
-  final count = 0.obs;
+final logTitle = "HomeController";
+
+class HomeController extends GetxController {
+  RxInt navIndex = 0.obs;
+  List<MenuItem> menus =
+      menuItems.where((element) => element.isShow == true).toList();
+
   @override
   void onInit() {
+    getSingInDealerCode();
     super.onInit();
   }
 
@@ -19,5 +30,24 @@ class HomeController extends GetxController {
     super.onClose();
   }
 
-  void increment() => count.value++;
+  Future<void> getSingInDealerCode() async {
+    final result = await nhostClient.auth.currentUser!.metadata['dealerCode'];
+    // Log.loga(logTitle, 'getSingInDealerCode:: ${result}');
+
+    final graphqlClient = createNhostGraphQLClient(nhostClient);
+    // Run a query, unauthenticated
+    var queryResult = await graphqlClient.query(
+      QueryOptions(document: getDealers, variables: {
+        'dealerCode': result.toString() + '1',
+      }),
+    );
+    // Log.loga(logTitle, 'getSingInDealerCode:: ${queryResult.data!['dealers']}');
+    List? dealers = queryResult.data!['dealers'];
+    if (dealers!.isNotEmpty) {
+      navIndex.value = 0;
+    } else {
+      navIndex.value = 3;
+    }
+    update();
+  }
 }

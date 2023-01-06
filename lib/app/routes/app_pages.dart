@@ -1,7 +1,13 @@
 import 'package:get/get.dart';
 
+import '../modules/cart/bindings/cart_binding.dart';
+import '../modules/cart/views/cart_view.dart';
+import '../modules/history/bindings/history_binding.dart';
+import '../modules/history/views/history_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/product/bindings/product_binding.dart';
+import '../modules/product/views/product_view.dart';
 import '../modules/profile/bindings/profile_binding.dart';
 import '../modules/profile/views/profile_view.dart';
 import '../modules/register_success/bindings/register_success_binding.dart';
@@ -22,7 +28,7 @@ class AppPages {
   static final routes = [
     GetPage(
       name: _Paths.HOME,
-      page: () => const HomeView(),
+      page: () => HomeView(),
       binding: HomeBinding(),
       middlewares: [RouteGuard()],
     ),
@@ -38,14 +44,29 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.PROFILE,
-      page: () => const ProfileView(),
+      page: () => ProfileView(),
       binding: ProfileBinding(),
       middlewares: [RouteGuard()],
     ),
     GetPage(
       name: _Paths.REGISTER_SUCCESS,
-      page: () => const RegisterSuccessView(),
+      page: () => RegisterSuccessView(),
       binding: RegisterSuccessBinding(),
+    ),
+    GetPage(
+      name: _Paths.CART,
+      page: () => CartView(),
+      binding: CartBinding(),
+    ),
+    GetPage(
+      name: _Paths.PRODUCT,
+      page: () => ProductView(),
+      binding: ProductBinding(),
+    ),
+    GetPage(
+      name: _Paths.HISTORY,
+      page: () => HistoryView(),
+      binding: HistoryBinding(),
     ),
   ];
 }

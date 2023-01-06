@@ -11,6 +11,7 @@ dependencies:
   dio: ^4.0.6
   nhost_sdk: ^3.0.4
   nhost_flutter_graphql: ^2.0.4
+  nhost_graphql_adapter: ^2.0.4
   google_fonts: ^3.0.1
   flutter_svg: ^1.1.6
   flutter: 

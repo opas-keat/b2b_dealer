@@ -339,7 +339,7 @@ packages:
     source: hosted
     version: "2.0.4"
   nhost_graphql_adapter:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: nhost_graphql_adapter
       url: "https://pub.dartlang.org"
