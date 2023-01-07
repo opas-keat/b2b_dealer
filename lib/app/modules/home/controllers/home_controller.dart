@@ -2,7 +2,7 @@ import 'package:graphql/client.dart';
 import 'package:nhost_graphql_adapter/nhost_graphql_adapter.dart';
 import 'package:get/get.dart';
 
-import '../../../data/graphql/graphql_query.dart';
+import '../../../data/graphql/graphql_dealer.dart';
 import '../../../data/models/menu.dart';
 import '../../../shared/constant.dart';
 import '../../../shared/utils/log_util.dart';
@@ -41,7 +41,9 @@ class HomeController extends GetxController {
         'dealerCode': result.toString() + '1',
       }),
     );
-    // Log.loga(logTitle, 'getSingInDealerCode:: ${queryResult.data!['dealers']}');
+    if (queryResult.hasException) {
+      Log.loga(logTitle, 'getSingInDealerCode:: ${queryResult.exception}');
+    }
     List? dealers = queryResult.data!['dealers'];
     if (dealers!.isNotEmpty) {
       navIndex.value = 0;

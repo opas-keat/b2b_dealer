@@ -1,12 +1,13 @@
 import 'dart:convert';
 
-DealerResponse dealerResponseFromJson(String str) =>
-    DealerResponse.fromJson(json.decode(str));
+DealerServiceResponse dealerResponseFromJson(String str) =>
+    DealerServiceResponse.fromJson(json.decode(str));
 
-String dealerResponseToJson(DealerResponse data) => json.encode(data.toJson());
+String dealerResponseToJson(DealerServiceResponse data) =>
+    json.encode(data.toJson());
 
-class DealerResponse {
-  DealerResponse({
+class DealerServiceResponse {
+  DealerServiceResponse({
     required this.statusCode,
     required this.code,
     required this.message,
@@ -16,18 +17,19 @@ class DealerResponse {
   int? statusCode;
   String? code;
   String? message;
-  Dealer? data;
+  DealerService? data;
 
-  DealerResponse.withError({
+  DealerServiceResponse.withError({
     this.statusCode,
     String? msg,
-  })  : message = msg;
+  }) : message = msg;
 
-  factory DealerResponse.fromJson(Map<String, dynamic> json) => DealerResponse(
+  factory DealerServiceResponse.fromJson(Map<String, dynamic> json) =>
+      DealerServiceResponse(
         statusCode: json["status_code"],
         code: json["code"],
         message: json["message"],
-        data: Dealer.fromJson(json["data"]),
+        data: DealerService.fromJson(json["data"]),
       );
 
   Map<String, dynamic> toJson() => {
@@ -38,8 +40,8 @@ class DealerResponse {
       };
 }
 
-class Dealer {
-  Dealer({
+class DealerService {
+  DealerService({
     this.id = '',
     this.code = '',
     this.name = '',
@@ -53,7 +55,7 @@ class Dealer {
   String address;
   String phone;
 
-  factory Dealer.fromJson(Map<String, dynamic> json) => Dealer(
+  factory DealerService.fromJson(Map<String, dynamic> json) => DealerService(
         id: json["id"],
         code: json["code"],
         name: json["name"],
