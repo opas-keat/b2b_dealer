@@ -24,6 +24,7 @@ class MyApp extends StatelessWidget {
       nhostClient: nhostClient,
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
+        defaultTransition: Transition.noTransition,
         title: "PPSW DEALER",
         initialRoute: AppPages.INITIAL,
         getPages: AppPages.routes,

@@ -38,7 +38,7 @@ class HomeController extends GetxController {
     // Run a query, unauthenticated
     var queryResult = await graphqlClient.query(
       QueryOptions(document: getDealers, variables: {
-        'dealerCode': result.toString() + '1',
+        'dealerCode': result.toString(),
       }),
     );
     if (queryResult.hasException) {

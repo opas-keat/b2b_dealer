@@ -125,6 +125,7 @@ class SideMenu extends GetView<HomeController> {
                   ),
                   onTap: () {
                     if (controller.menus[index].title == 'ออกจากระบบ') {
+                      nhostClient.auth.signOut();
                       Get.offNamed(Routes.SIGNIN);
                     } else {
                       controller.navIndex.value = index;
