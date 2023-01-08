@@ -9,3 +9,13 @@ subscription Profile{
   }
 }
 ''');
+
+final updatePasswordMutation = gql(r'''
+subscription Profile{
+  users{
+    id
+    avatarUrl    
+    displayName
+  }
+}
+''');

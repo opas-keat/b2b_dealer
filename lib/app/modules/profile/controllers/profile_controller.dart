@@ -18,7 +18,7 @@ class ProfileController extends GetxController {
   RxString dealerCode = "".obs;
   @override
   void onInit() {
-    // getSingInDealerCode();
+    getSingInDealerCode();
     super.onInit();
   }
 
@@ -36,21 +36,21 @@ class ProfileController extends GetxController {
     final result = await nhostClient.auth.currentUser!.metadata['dealerCode'];
     // Log.loga(logTitle, 'getSingInDealerCode:: ${result}');
     dealerCode.value = result.toString();
-    final graphqlClient = createNhostGraphQLClient(nhostClient);
-    // Run a query, unauthenticated
-    var queryResult = await graphqlClient.query(
-      QueryOptions(document: getDealers, variables: {
-        'dealerCode': result.toString(),
-      }),
-    );
-    // Log.loga(logTitle, 'getSingInDealerCode:: ${queryResult.data!['dealers']}');
-    List? dealers = queryResult.data!['dealers'];
-    if (dealers!.isNotEmpty) {
-      checkDealer.value = true;
-    } else {
-      checkDealer.value = false;
-    }
-    update();
+    // final graphqlClient = createNhostGraphQLClient(nhostClient);
+    // // Run a query, unauthenticated
+    // var queryResult = await graphqlClient.query(
+    //   QueryOptions(document: getDealers, variables: {
+    //     'dealerCode': result.toString(),
+    //   }),
+    // );
+    // // Log.loga(logTitle, 'getSingInDealerCode:: ${queryResult.data!['dealers']}');
+    // List? dealers = queryResult.data!['dealers'];
+    // if (dealers!.isNotEmpty) {
+    //   checkDealer.value = true;
+    // } else {
+    //   checkDealer.value = false;
+    // }
+    // update();
   }
 
   Future<bool> listSystemLinkDealerByCode(String dealerCode) async {
@@ -84,7 +84,7 @@ class ProfileController extends GetxController {
           createdBy: userId,
         ));
       });
-      Log.loga(logTitle, 'delaerInsert:: ${delaerInsert}');
+      // Log.loga(logTitle, 'delaerInsert:: ${delaerInsert}');
       //Insert dealers
       final graphqlClient = createNhostGraphQLClient(nhostClient);
       var mutationResult = await graphqlClient.mutate(
@@ -92,20 +92,6 @@ class ProfileController extends GetxController {
           'dealers': delaerInsert,
         }),
       );
-      // if (mutationResult.hasException) {
-      //   print(mutationResult.exception);
-      // } else {
-      //   print(mutationResult.data);
-      // }
-      // final dealers = (mutationResult.data!['dealers'] as List)
-      //     .map((e) => DealerInsert.fromMap(e))
-      //     .toList();
-      // dealers.forEach((element) {
-      //   Log.loga(logTitle, 'listSystemLinkDealerByCode:: ${element.linkId}');
-      //   Log.loga(
-      //       logTitle, 'listSystemLinkDealerByCoder:: ${element.dealerCode}');
-      // });
-      // getSingInDealerCode();
       return true;
     } catch (e) {
       Log.loga(logTitle, 'Error:: ${e}');
