@@ -116,7 +116,7 @@ class ProfileView extends StatelessWidget {
             builder: (result) {
               // has error
               if (result.hasException) {
-                debugPrint(result.exception!.toString());
+                // debugPrint(result.exception!.toString());
                 return const Text('Error loading dealers data!');
               }
               //loading
@@ -124,6 +124,7 @@ class ProfileView extends StatelessWidget {
                 return const Center(child: CircularProgressIndicator());
               }
               //show data
+              // print(result);
               // final dealers = DealerInsert.fromJson(result.data!['dealers']);
               final dealers = (result.data!['dealers'] as List)
                   .map((e) => DealerResponseSubscription.fromMap(e))

@@ -1,9 +1,8 @@
 import 'package:get/get.dart';
 
 class ProductController extends GetxController {
-  //TODO: Implement ProductController
+  RxString currentCategory = "1".obs;
 
-  final count = 0.obs;
   @override
   void onInit() {
     super.onInit();
@@ -18,6 +17,4 @@ class ProductController extends GetxController {
   void onClose() {
     super.onClose();
   }
-
-  void increment() => count.value++;
 }

@@ -57,16 +57,19 @@ class AppPages {
       name: _Paths.CART,
       page: () => CartView(),
       binding: CartBinding(),
+      middlewares: [RouteGuard()],
     ),
     GetPage(
       name: _Paths.PRODUCT,
       page: () => ProductView(),
       binding: ProductBinding(),
+      middlewares: [RouteGuard()],
     ),
     GetPage(
       name: _Paths.HISTORY,
       page: () => HistoryView(),
       binding: HistoryBinding(),
+      middlewares: [RouteGuard()],
     ),
   ];
 }

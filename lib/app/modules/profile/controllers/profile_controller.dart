@@ -70,7 +70,7 @@ class ProfileController extends GetxController {
       final dealerList = dealerSystemLink.rows;
 
       //user id
-      final userId = await nhostClient.auth.currentUser!.id;
+      final userId = nhostClient.auth.currentUser!.id;
 
       // dealer list for Insert
       final delaerInsert = <DealerInsert>[];
