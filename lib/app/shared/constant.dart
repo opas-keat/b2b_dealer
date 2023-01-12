@@ -10,3 +10,16 @@ const accentColor = Color(0xFF5E000C);
 const accentLightColor = Color(0xFFB70018);
 
 const double defaultPadding = 16.0;
+
+const brandWheel = [
+  "COSMIS",
+  "COSMIS2",
+  "FATTAH",
+  "FORCE",
+  "NAYA",
+  "UNIVERSE",
+  "VALENZA"
+];
+const groupWheel = ["COMPLICATED", "FACTORY"];
+const brandTires = ["COSMIS", "DOUBLESTAR", "ZESTINO"];
+const groupTires = ["TIRE-NEW PP"];

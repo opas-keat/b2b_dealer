@@ -1,11 +1,11 @@
 List<Category> categoryList = [
   Category(
     id: "1",
-    title: "ยาง",
+    title: "ล้อ",
   ),
   Category(
     id: "2",
-    title: "ล้อ",
+    title: "ยาง",
   ),
   Category(
     id: "3",
