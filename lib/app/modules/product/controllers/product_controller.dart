@@ -14,6 +14,7 @@ class ProductController extends GetxController {
   RxString currentCategory = "1".obs;
   final bamsList = <BrandAndModel>[].obs;
   final productsList = <ProductsModel>[].obs;
+  final product = ProductModel().obs;
   final imageUrl = <String>[].obs;
 
   final currentBrand = "".obs;
@@ -24,11 +25,15 @@ class ProductController extends GetxController {
   // cart
   RxInt cartTotalItem = 0.obs;
 
+  // itemCount
+  RxInt itemCount = 0.obs;
+
   final graphqlClient = createNhostGraphQLClient(nhostClient);
 
   @override
   void onInit() {
     listBrandAndModel();
+    // showProductDetail("", "", "", 0);
     super.onInit();
   }
 
@@ -42,24 +47,75 @@ class ProductController extends GetxController {
     super.onClose();
   }
 
+  minusItem() {
+    if (itemCount.value < 1) {
+      itemCount.value = 0;
+    } else {
+      itemCount.value--;
+    }
+    update();
+  }
+
+  addItem() {
+    itemCount.value++;
+    update();
+  }
+
   showProductDetail(
     String productId,
     String productName,
     String url,
     int price,
-  ) {
+  ) async {
     Log.loga(logTitle, 'showProductDetail:: start');
-    Log.loga(logTitle, 'listProduct:: productId: $productId');
-    Log.loga(logTitle, 'listProduct:: productName: $productName');
-    Log.loga(logTitle, 'listProduct:: url: $url');
-    Log.loga(logTitle, 'listProduct:: price: $price');
-    Log.loga(logTitle, 'listProduct:: brand: ${currentBrand.value}');
-    Log.loga(logTitle, 'listProduct:: model: ${currentModel.value}');
+    Log.loga(logTitle, 'showProductDetail:: productId: $productId');
+    Log.loga(logTitle, 'showProductDetail:: productName: $productName');
+    Log.loga(logTitle, 'showProductDetail:: url: $url');
+    Log.loga(logTitle, 'showProductDetail:: price: $price');
+    Log.loga(logTitle, 'showProductDetail:: brand: ${currentBrand.value}');
+    Log.loga(logTitle, 'showProductDetail:: model: ${currentModel.value}');
 
     isLoading(true);
     try {
       productsList.value.clear();
       currentName.value = productName;
+      productId = "a96d83bb-2abe-44d7-82e1-6f4964043bb5";
+      var result = await graphqlClient.query(
+        QueryOptions(
+          document: getProductDetail,
+          variables: {
+            'id': productId,
+          },
+        ),
+      );
+      if (result.hasException) {
+        Log.loga(logTitle, 'showProductDetail:: ${result.exception}');
+      }
+      // Log.loga(logTitle, 'showProductDetail:: ${result}');
+      final response = (result.data!['products'] as List)
+          .map((e) => ProductResponseModel.fromMap(e))
+          .toList();
+      // for (var i = 0; i < response.length; i++) {
+      //   Log.loga(logTitle, 'showProductDetail:: ${response[i].name}');
+      // }
+      product.value = (ProductModel(
+        brand: response.first.brand,
+        code: response.first.code,
+        color: response.first.color,
+        dealerPrice1: response.first.dealerPrice1,
+        groupCode: response.first.groupCode,
+        id: response.first.id,
+        linkId: response.first.linkId,
+        matSize: response.first.matSize,
+        model: response.first.model,
+        name: productName,
+        offset: response.first.offset,
+        pitchCircleCode: response.first.pitchCircleCode,
+        price: price,
+        treadWare: response.first.treadWare,
+        width: response.first.width,
+        url: url,
+      ));
       update();
       isLoading(false);
     } catch (e) {

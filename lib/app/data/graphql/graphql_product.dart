@@ -1,8 +1,8 @@
 import 'package:graphql_flutter/graphql_flutter.dart';
 
 final getProductDetail = gql(r'''
-query getProductDetail($id: uuid = "") {
-  products_by_pk(id: $id) {
+query getProductDetail($id: uuid!) {
+  products(where: {id: {_eq: $id}}) {
     color
     mat_size
     offset
@@ -10,6 +10,15 @@ query getProductDetail($id: uuid = "") {
     price
     tread_ware
     width
+    code
+    brand
+    dealer_price_1
+    group_code
+    id
+    link_id
+    model
+    name
+    mat_size
   }
 }
 ''');
