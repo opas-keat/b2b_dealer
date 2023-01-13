@@ -7,9 +7,8 @@ import '../../../data/models/product_model.dart';
 import '../../../shared/constant.dart';
 import '../../../shared/utils/log_util.dart';
 
-final logTitle = "ProductController";
-
 class ProductController extends GetxController {
+  final logTitle = "ProductController";
   var isLoading = true.obs;
   RxString currentCategory = "1".obs;
   final bamsList = <BrandAndModel>[].obs;
@@ -26,7 +25,7 @@ class ProductController extends GetxController {
   RxInt cartTotalItem = 0.obs;
 
   // itemCount
-  RxInt itemCount = 0.obs;
+  // RxInt itemsCount = 0.obs;
 
   final graphqlClient = createNhostGraphQLClient(nhostClient);
 
@@ -47,17 +46,17 @@ class ProductController extends GetxController {
     super.onClose();
   }
 
-  minusItem() {
-    if (itemCount.value < 1) {
-      itemCount.value = 0;
-    } else {
-      itemCount.value--;
-    }
-    update();
-  }
+  // minusItem() {
+  //   if (itemCount.value < 1) {
+  //     itemCount.value = 0;
+  //   } else {
+  //     itemCount.value--;
+  //   }
+  //   update();
+  // }
 
-  addItem() {
-    itemCount.value++;
+  addItemToCart() {
+    cartTotalItem.value++;
     update();
   }
 
@@ -79,7 +78,7 @@ class ProductController extends GetxController {
     try {
       productsList.value.clear();
       currentName.value = productName;
-      productId = "a96d83bb-2abe-44d7-82e1-6f4964043bb5";
+      // productId = "a96d83bb-2abe-44d7-82e1-6f4964043bb5";
       var result = await graphqlClient.query(
         QueryOptions(
           document: getProductDetail,
@@ -187,6 +186,8 @@ class ProductController extends GetxController {
 
   listBrandAndModel() async {
     Log.loga(logTitle, 'listBrandAndModel:: start');
+    Log.loga(logTitle,
+        'listBrandAndModel:: currentCategory: ' + currentCategory.value);
     isLoading(true);
     bamsList.value.clear();
     try {

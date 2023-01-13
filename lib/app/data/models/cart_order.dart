@@ -1,0 +1,155 @@
+List<CartOrder> sampleCartOrders = [
+  CartOrder(
+    fNMSysProdId: "777777",
+    fTProdCode: "1855516DLTYLM75",
+    fTProdNameTH: "ยาง DUNLOP LM705 185-55-16",
+    fNDealerPrice1: 50,
+    priceCredit: 55,
+    fNPrice: 60,
+    fNQuantityBal: 10,
+    quantity: 0,
+  ),
+  CartOrder(
+    fNMSysProdId: "210340020",
+    fTProdCode: "1855516DLTYLM75",
+    fTProdNameTH: "ยาง DUNLOP LM705 185-55-16",
+    fNDealerPrice1: 50,
+    priceCredit: 55,
+    fNPrice: 50,
+    fNQuantityBal: 10,
+    quantity: 0,
+  ),
+  CartOrder(
+    fNMSysProdId: "210340020",
+    fTProdCode: "1855516DLTYLM75",
+    fTProdNameTH: "ยาง DUNLOP LM705 185-55-16",
+    fNDealerPrice1: 50,
+    priceCredit: 55,
+    fNPrice: 40,
+    fNQuantityBal: 10,
+    quantity: 0,
+  ),
+  // CartOrder(
+  //   fNMSysProdId: "210340020",
+  //   fTProdCode: "1855516DLTYLM75",
+  //   fTProdNameTH: "ยาง DUNLOP LM705 185-55-16",
+  //   fNDealerPrice1: 50,
+  //   priceCredit: 55,
+  //   fNPrice: 60,
+  //   fNQuantityBal: 10,
+  //   quantity: 0,
+  // ),
+  // CartOrder(
+  //   fNMSysProdId: "210340020",
+  //   fTProdCode: "1855516DLTYLM75",
+  //   fTProdNameTH: "ยาง DUNLOP LM705 185-55-16",
+  //   fNDealerPrice1: 50,
+  //   priceCredit: 55,
+  //   fNPrice: 60,
+  //   fNQuantityBal: 10,
+  //   quantity: 0,
+  // ),
+  // CartOrder(
+  //   fNMSysProdId: "210340020",
+  //   fTProdCode: "1855516DLTYLM75",
+  //   fTProdNameTH: "ยาง DUNLOP LM705 185-55-16",
+  //   fNDealerPrice1: 50,
+  //   priceCredit: 55,
+  //   fNPrice: 60,
+  //   fNQuantityBal: 10,
+  //   quantity: 0,
+  // ),
+  // CartOrder(
+  //   fNMSysProdId: "210340020",
+  //   fTProdCode: "1855516DLTYLM75",
+  //   fTProdNameTH: "ยาง DUNLOP LM705 185-55-16",
+  //   fNDealerPrice1: 50,
+  //   priceCredit: 55,
+  //   fNPrice: 60,
+  //   fNQuantityBal: 10,
+  //   quantity: 0,
+  // ),
+  // CartOrder(
+  //   fNMSysProdId: "210340020",
+  //   fTProdCode: "1855516DLTYLM75",
+  //   fTProdNameTH: "ยาง DUNLOP LM705 185-55-16",
+  //   fNDealerPrice1: 50,
+  //   priceCredit: 55,
+  //   fNPrice: 60,
+  //   fNQuantityBal: 10,
+  //   quantity: 4,
+  // ),
+  // CartOrder(
+  //   fNMSysProdId: "210340020",
+  //   fTProdCode: "1855516DLTYLM75",
+  //   fTProdNameTH: "ยาง DUNLOP LM705 185-55-16",
+  //   fNDealerPrice1: 50,
+  //   priceCredit: 55,
+  //   fNPrice: 60,
+  //   fNQuantityBal: 10,
+  //   quantity: 0,
+  // ),
+  // CartOrder(
+  //   fNMSysProdId: "210340020",
+  //   fTProdCode: "1855516DLTYLM75",
+  //   fTProdNameTH: "ยาง DUNLOP LM705 185-55-16",
+  //   fNDealerPrice1: 50,
+  //   priceCredit: 55,
+  //   fNPrice: 60,
+  //   fNQuantityBal: 10,
+  //   quantity: 0,
+  // ),
+  // CartOrder(
+  //   fNMSysProdId: "210340020",
+  //   fTProdCode: "1855516DLTYLM75",
+  //   fTProdNameTH: "ยาง DUNLOP LM705 185-55-16",
+  //   fNDealerPrice1: 50,
+  //   priceCredit: 55,
+  //   fNPrice: 60,
+  //   fNQuantityBal: 10,
+  //   quantity: 0,
+  // ),
+  // CartOrder(
+  //   fNMSysProdId: "210340020",
+  //   fTProdCode: "1855516DLTYLM75",
+  //   fTProdNameTH: "ยาง DUNLOP LM705 185-55-16",
+  //   fNDealerPrice1: 50,
+  //   priceCredit: 55,
+  //   fNPrice: 60,
+  //   fNQuantityBal: 10,
+  //   quantity: 0,
+  // ),
+  // CartOrder(
+  //   fNMSysProdId: "210340020",
+  //   fTProdCode: "1855516DLTYLM75",
+  //   fTProdNameTH: "ยาง DUNLOP LM705 185-55-16",
+  //   fNDealerPrice1: 50,
+  //   priceCredit: 55,
+  //   fNPrice: 60,
+  //   fNQuantityBal: 10,
+  //   quantity: 0,
+  // ),
+];
+
+// List<CartOrder> sampleCartOrders = [];
+
+class CartOrder {
+  String fNMSysProdId;
+  String fTProdCode;
+  String fTProdNameTH;
+  int fNDealerPrice1;
+  int priceCredit;
+  int fNPrice;
+  int fNQuantityBal;
+  int quantity;
+  CartOrder({
+    required this.fNMSysProdId,
+    required this.fTProdCode,
+    required this.fTProdNameTH,
+    required this.fNDealerPrice1,
+    required this.priceCredit,
+    required this.fNPrice,
+    required this.fNQuantityBal,
+    required this.quantity,
+  });
+}

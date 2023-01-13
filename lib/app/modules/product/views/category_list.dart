@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../data/category.dart';
+import '../../../data/models/category.dart';
 import '../../../shared/constant.dart';
 import '../controllers/product_controller.dart';
 

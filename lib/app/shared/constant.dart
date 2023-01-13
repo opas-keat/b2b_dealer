@@ -23,3 +23,8 @@ const brandWheel = [
 const groupWheel = ["COMPLICATED", "FACTORY"];
 const brandTires = ["COSMIS", "DOUBLESTAR", "ZESTINO"];
 const groupTires = ["TIRE-NEW PP"];
+
+final Map<String, String> optionPaymentChannel = {
+  '1': 'เงินสด', // ส่งค่า 7 วันไป
+  '2': 'เครดิต', // ส่งค่า 60 วันไป
+};
