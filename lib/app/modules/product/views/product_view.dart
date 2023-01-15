@@ -33,15 +33,15 @@ class ProductView extends StatelessWidget {
             CategoryList(),
             Obx(() {
               if (controller.productsList.value.isNotEmpty) {
-                if (controller.currentCategory == '1') {
+                if (controller.currentCategory.value == '1') {
                   return SearchWheel();
-                } else if (controller.currentCategory == '2') {
+                } else if (controller.currentCategory.value == '2') {
                   return SearchTires();
                 } else {
-                  return Container();
+                  return const SizedBox.shrink();
                 }
               } else {
-                return Container();
+                return const SizedBox.shrink();
               }
             }),
             const SizedBox(height: defaultPadding / 2),
@@ -68,9 +68,9 @@ class ProductView extends StatelessWidget {
                 }
                 // show detail
                 if (controller.product.value.id.isNotEmpty) {
-                  return ProductDeatilWidget();
+                  return ProductDetailWidget();
                 } else {
-                  return SizedBox(width: 0);
+                  return const SizedBox.shrink();
                 }
               },
             ),

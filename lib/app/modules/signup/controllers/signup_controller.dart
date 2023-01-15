@@ -41,7 +41,7 @@ class SignupController extends GetxController {
             'dealerCode': dealerCode,
           },
         );
-        if (authResponse!.isBlank == false) {
+        if (authResponse.isBlank == false) {
           return true;
         } else {
           return false;

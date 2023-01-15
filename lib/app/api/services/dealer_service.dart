@@ -7,9 +7,9 @@ import '../api_end_points.dart';
 import '../api_params.dart';
 import '../api_utils.dart';
 
-final title = "ApiService";
-
 class DealerService {
+  final title = "DealerService";
+
   Future<DealerServiceResponse?> getDealerByCode(String dealerCode) async {
     final connectivityResult = await (Connectivity().checkConnectivity());
     if (connectivityResult == ConnectivityResult.none) {

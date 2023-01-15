@@ -71,3 +71,23 @@ class DealerService {
         "phone": phone,
       };
 }
+
+class DealersResponse {
+  DealersResponse({
+    required this.dealerCode,
+    required this.name,
+  });
+
+  String dealerCode;
+  String name;
+
+  factory DealersResponse.fromMap(Map<String, dynamic> json) => DealersResponse(
+        dealerCode: json["dealer_code"],
+        name: json["name"],
+      );
+
+  Map<String, dynamic> toMap() => {
+        "dealer_code": dealerCode,
+        "name": name,
+      };
+}

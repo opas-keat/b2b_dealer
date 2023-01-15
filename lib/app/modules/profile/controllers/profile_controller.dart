@@ -33,7 +33,7 @@ class ProfileController extends GetxController {
   }
 
   Future<void> getSingInDealerCode() async {
-    final result = await nhostClient.auth.currentUser!.metadata['dealerCode'];
+    final result = nhostClient.auth.currentUser!.metadata['dealerCode'];
     // Log.loga(logTitle, 'getSingInDealerCode:: ${result}');
     dealerCode.value = result.toString();
     // final graphqlClient = createNhostGraphQLClient(nhostClient);
@@ -73,9 +73,9 @@ class ProfileController extends GetxController {
       final userId = nhostClient.auth.currentUser!.id;
 
       // dealer list for Insert
-      final delaerInsert = <DealerInsert>[];
-      dealerList.forEach((element) {
-        delaerInsert.add(DealerInsert(
+      final dealerInsert = <DealerInsert>[];
+      for (var element in dealerList) {
+        dealerInsert.add(DealerInsert(
           address: element.address,
           linkId: element.id,
           name: element.name,
@@ -83,13 +83,13 @@ class ProfileController extends GetxController {
           dealerCode: element.code,
           createdBy: userId,
         ));
-      });
+      }
       // Log.loga(logTitle, 'delaerInsert:: ${delaerInsert}');
       //Insert dealers
       final graphqlClient = createNhostGraphQLClient(nhostClient);
       var mutationResult = await graphqlClient.mutate(
         MutationOptions(document: createDealers, variables: {
-          'dealers': delaerInsert,
+          'dealers': dealerInsert,
         }),
       );
       return true;

@@ -1,11 +1,5 @@
 import 'dart:convert';
 
-DealerSystemLinkRequest dealerSystemLinkRequestFromJson(String str) =>
-    DealerSystemLinkRequest.fromJson(json.decode(str));
-
-String dealerSystemLinkRequestToJson(DealerSystemLinkRequest data) =>
-    json.encode(data.toJson());
-
 class DealerSystemLinkRequest {
   DealerSystemLinkRequest({
     required this.criteria,
@@ -43,12 +37,6 @@ class DealerSystemLinkCriteria {
         "dealer_code": dealerCode,
       };
 }
-
-DealerSystemLinkResponse dealerSystemLinkResponseFromJson(String str) =>
-    DealerSystemLinkResponse.fromJson(json.decode(str));
-
-String dealerSystemLinkResponseToJson(DealerSystemLinkResponse data) =>
-    json.encode(data.toJson());
 
 class DealerSystemLinkResponse {
   DealerSystemLinkResponse({
@@ -134,11 +122,6 @@ class DealerSystemLink {
       };
 }
 
-DealerInsert dealerFromJson(String str) =>
-    DealerInsert.fromJson(json.decode(str));
-
-String dealerToJson(DealerInsert data) => json.encode(data.toJson());
-
 class DealerInsert {
   DealerInsert({
     required this.address,
@@ -192,12 +175,6 @@ class DealerInsert {
         "created_by": createdBy,
       };
 }
-
-DealerResponseSubscription dealerResponseSubscriptionFromMap(String str) =>
-    DealerResponseSubscription.fromMap(json.decode(str));
-
-String dealerResponseSubscriptionToMap(DealerResponseSubscription data) =>
-    json.encode(data.toMap());
 
 class DealerResponseSubscription {
   DealerResponseSubscription({

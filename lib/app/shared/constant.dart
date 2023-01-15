@@ -28,3 +28,12 @@ final Map<String, String> optionPaymentChannel = {
   '1': 'เงินสด', // ส่งค่า 7 วันไป
   '2': 'เครดิต', // ส่งค่า 60 วันไป
 };
+
+const logActionLogin = "เข้าสู่ระบบ";
+const logActionAddProduct = "เพิ่มสินค้า";
+const logActionEditProduct = "แก้ไขสินค้า";
+const logActionDelete = "ลบสินค้า";
+const logActionDisableDealer = "ปิดร้านค้า";
+const logActionEnableDealer = "เปิดร้านค้า";
+const logActionRegister = "ลงทะเบียนสมาชิก";
+const logActionOrder = "สั่งสินค้า";

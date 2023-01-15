@@ -7,8 +7,8 @@ import '../../../shared/custom_text.dart';
 import '../../../shared/utils/convert.dart';
 import '../controllers/product_controller.dart';
 
-class ProductDeatilWidget extends StatelessWidget {
-  ProductDeatilWidget({
+class ProductDetailWidget extends StatelessWidget {
+  ProductDetailWidget({
     Key? key,
   }) : super(key: key);
 
