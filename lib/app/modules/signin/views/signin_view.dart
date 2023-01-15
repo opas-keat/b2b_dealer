@@ -133,11 +133,6 @@ class SigninView extends StatelessWidget {
                                               ),
                                             );
                                     }
-                                    // controller.login(
-                                    //   _emailController.text,
-                                    //   _passwordController.text,
-                                    //   _dealerCodeController.text,
-                                    // );
                                   },
                                 ),
                               ),

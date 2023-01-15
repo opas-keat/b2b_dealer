@@ -4,12 +4,14 @@ import 'package:get/get.dart';
 import 'package:nhost_sdk/nhost_sdk.dart';
 
 import '../../../api/services/dealer_service.dart';
+import '../../../api/services/logs_service.dart';
+import '../../../data/models/logs_service_model.dart';
 import '../../../shared/constant.dart';
 
-final logTitle = "SignupController";
-
 class SignupController extends GetxController {
+  final logTitle = "SignupController";
   RxString signUpError = ''.obs;
+  String dealerName = '';
 
   @override
   void onInit() {
@@ -26,10 +28,11 @@ class SignupController extends GetxController {
     super.onClose();
   }
 
-  Future<bool> signUpWithEmailPassword(
-      {required String email,
-      required String password,
-      required String dealerCode}) async {
+  Future<bool> signUpWithEmailPassword({
+    required String email,
+    required String password,
+    required String dealerCode,
+  }) async {
     try {
       final result = await getDealerByCode(dealerCode);
       // Log.loga(title, 'signUpWithEmailPassword:: ${result!.statusCode == 200}');
@@ -42,6 +45,10 @@ class SignupController extends GetxController {
           },
         );
         if (authResponse.isBlank == false) {
+          final logsCreate = LogsCreateRequestModel(
+              createdBy: authResponse.user!.id,
+              detail: '$dealerCode $dealerName : $logActionRegister');
+          final resultCreateLog = await LogsService().createLogs(logsCreate);
           return true;
         } else {
           return false;
@@ -60,6 +67,7 @@ class SignupController extends GetxController {
     try {
       final result = await DealerService().getDealerByCode(dealerCode);
       if (result!.statusCode == 200) {
+        dealerName = result.data!.name;
         return true;
       }
       signUpError.value = result.message!;
