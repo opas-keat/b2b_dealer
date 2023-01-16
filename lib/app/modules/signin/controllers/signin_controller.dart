@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:b2b_dealer/app/data/graphql/graphql_logs.dart';
 import 'package:graphql/client.dart';
 
 import 'package:get/get.dart';
@@ -51,11 +52,21 @@ class SigninController extends GetxController {
             .toList();
 
         if (response.isNotEmpty) {
-          final logsCreate = LogsCreateRequestModel(
-              createdBy: authResponse.user!.id,
-              detail: '${response.first.name} : $logActionLogin');
-          Log.loga(title, 'signInWithEmailPassword:: ${logsCreate.toJson()}');
-          final resultCreateLog = await LogsService().createLogs(logsCreate);
+          // logs with postgres
+          // final logsCreate = LogsCreateRequestModel(
+          //     createdBy: authResponse.user!.id,
+          //     detail: '${response.first.name} : $logActionLogin');
+          // Log.loga(title, 'signInWithEmailPassword:: ${logsCreate.toJson()}');
+          // final resultCreateLog = await LogsService().createLogs(logsCreate);
+          // logs with nhost
+          var mutationResult = await graphqlClient.mutate(
+            MutationOptions(document: createLogs, variables: {
+              'logs': LogsCreateRequestModel(
+                  createdBy: authResponse.user!.id,
+                  detail: '${response.first.name} : $logActionLogin')
+            }),
+          );
+          Log.loga(title, 'signInWithEmailPassword:: logs: ${mutationResult}');
         }
         return true;
       }
