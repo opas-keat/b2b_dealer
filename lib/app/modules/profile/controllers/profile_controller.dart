@@ -1,3 +1,4 @@
+import 'package:b2b_dealer/app/data/models/shipping_request/criteria.dart';
 import 'package:graphql/client.dart';
 import 'package:get/get.dart';
 import 'package:nhost_graphql_adapter/nhost_graphql_adapter.dart';
@@ -7,18 +8,24 @@ import '../../../api/api_end_points.dart';
 import '../../../api/api_utils.dart';
 import '../../../data/graphql/graphql_dealer.dart';
 import '../../../data/models/dealer_systemlink_model.dart';
+import '../../../data/models/shipping_request/shipping_request.dart';
+import '../../../data/models/shipping_response_model/shipping_response_model.dart';
 import '../../../shared/constant.dart';
 import '../../../shared/utils/log_util.dart';
 
-final logTitle = "ProfileController";
-
 class ProfileController extends GetxController {
+  final logTitle = "ProfileController";
   RxString signUpError = ''.obs;
   RxBool checkDealer = false.obs;
   RxString dealerCode = "".obs;
+
+  final offset = 0.obs;
+  final limit = 50.obs;
+
   @override
   void onInit() {
     getSingInDealerCode();
+    listShipping();
     super.onInit();
   }
 
@@ -30,6 +37,28 @@ class ProfileController extends GetxController {
   @override
   void onClose() {
     super.onClose();
+  }
+
+  listShipping() async {
+    Log.loga(logTitle, 'listShipping:: start');
+    try {
+      final res = await apiUtils.post(
+        url: "${Api.baseUrlSystemLink}${ApiEndPoints.systemLinkShippings}/",
+        data: ShippingRequest(
+          limit: limit.value,
+          offset: offset.value,
+          criteria: ShippingRequestCriteria(),
+        ).toJson(),
+      );
+      final shippingResponse = ShippingResponse.fromJson(res.data);
+      final shippingDatas = shippingResponse.data;
+      // deaker list from system link
+      final shippingList = shippingDatas!.rows;
+    } catch (e) {
+      Log.loga(logTitle, 'Error:: ${e}');
+      signUpError.value = '${e}';
+      return false;
+    }
   }
 
   Future<void> getSingInDealerCode() async {

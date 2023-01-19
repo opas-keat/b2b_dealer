@@ -26,6 +26,8 @@ class ProductController extends GetxController {
 
   // itemCount
   // RxInt itemsCount = 0.obs;
+  final offset = 0.obs;
+  final limit = 50.obs;
 
   final graphqlClient = createNhostGraphQLClient(nhostClient);
 
