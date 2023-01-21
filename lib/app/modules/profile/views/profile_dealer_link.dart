@@ -49,18 +49,21 @@ class ProfileDealerLinkWidget extends StatelessWidget {
               ),
               itemCount: dealers.length,
               itemBuilder: (context, index) {
-                return ListTile(
-                  title: CustomText(
-                    text:
-                        '${dealers[index].dealerCode} : ${dealers[index].name}',
-                    size: 18,
+                return Material(
+                  color: Color(0xFFF5F5F5),
+                  child: ListTile(
+                    title: CustomText(
+                      text:
+                          '${dealers[index].dealerCode} : ${dealers[index].name}',
+                      size: 18,
+                    ),
+                    subtitle: Text(
+                      '${dealers[index].address}\n${dealers[index].phone}',
+                    ),
+                    isThreeLine: true,
+                    // tileColor: const Color(0xFFF5F5F5),
+                    dense: false,
                   ),
-                  subtitle: Text(
-                    '${dealers[index].address}\n${dealers[index].phone}',
-                  ),
-                  isThreeLine: true,
-                  tileColor: const Color(0xFFF5F5F5),
-                  dense: false,
                 );
                 // return Mutation(
                 //   options: MutationOptions(

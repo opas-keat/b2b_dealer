@@ -2,15 +2,15 @@ import 'package:collection/collection.dart';
 
 import 'criteria.dart';
 
-class ShippingRequest {
+class ShippingRequestModel {
   ShippingRequestCriteria? criteria;
   int? limit;
   int? offset;
 
-  ShippingRequest({this.criteria, this.limit, this.offset});
+  ShippingRequestModel({this.criteria, this.limit, this.offset});
 
-  factory ShippingRequest.fromJson(Map<String, dynamic> json) {
-    return ShippingRequest(
+  factory ShippingRequestModel.fromJson(Map<String, dynamic> json) {
+    return ShippingRequestModel(
       criteria: json['criteria'] == null
           ? null
           : ShippingRequestCriteria.fromJson(
@@ -29,7 +29,7 @@ class ShippingRequest {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    if (other is! ShippingRequest) return false;
+    if (other is! ShippingRequestModel) return false;
     final mapEquals = const DeepCollectionEquality().equals;
     return mapEquals(other.toJson(), toJson());
   }

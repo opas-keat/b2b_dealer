@@ -1,4 +1,4 @@
-class Row {
+class ShippingModel {
   String? id;
   String? code;
   String? name;
@@ -6,9 +6,10 @@ class Row {
   String? mobile;
   String? note;
 
-  Row({this.id, this.code, this.name, this.phone, this.mobile, this.note});
+  ShippingModel(
+      {this.id, this.code, this.name, this.phone, this.mobile, this.note});
 
-  factory Row.fromJson(Map<String, dynamic> json) => Row(
+  factory ShippingModel.fromJson(Map<String, dynamic> json) => ShippingModel(
         id: json['id'] as String?,
         code: json['code'] as String?,
         name: json['name'] as String?,

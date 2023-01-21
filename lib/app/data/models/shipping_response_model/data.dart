@@ -1,14 +1,14 @@
-import 'row.dart';
+import 'shipping_model.dart';
 
 class Data {
-  List<Row>? rows;
+  List<ShippingModel>? rows;
   int? totalCount;
 
   Data({this.rows, this.totalCount});
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
         rows: (json['rows'] as List<dynamic>?)
-            ?.map((e) => Row.fromJson(e as Map<String, dynamic>))
+            ?.map((e) => ShippingModel.fromJson(e as Map<String, dynamic>))
             .toList(),
         totalCount: json['total_count'] as int?,
       );

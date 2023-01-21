@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
 
+import '../../../data/graphql/graphql_shipping.dart';
+import '../../../data/models/shipping_response_subscription.dart';
 import '../../../routes/app_pages.dart';
 import '../../../shared/constant.dart';
 import '../../../shared/custom_flat_button.dart';
@@ -10,6 +12,7 @@ import '../../../shared/validator.dart';
 import '../controllers/profile_controller.dart';
 import 'profile_dealer_link.dart';
 import 'profile_detail.dart';
+import 'shipping_search.dart';
 
 class ProfileView extends StatelessWidget {
   ProfileView({Key? key}) : super(key: key);
@@ -36,55 +39,89 @@ class ProfileView extends StatelessWidget {
           const SizedBox(height: defaultPadding),
           ProfileCategoryWidget(categoryTitle: 'ขนส่ง'),
           const SizedBox(height: defaultPadding),
-          Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const SizedBox(width: defaultPadding),
-                  TextButton(
-                    onPressed: () async {
-                      Get.dialog(
-                        const Center(
-                          child: CircularProgressIndicator(),
-                        ),
-                        barrierDismissible: false,
-                      );
-                      // list dealer with dealer_code
-                      // final result =
-                      //     await controller.listSystemLinkDealerByCode(
-                      //         controller.dealerCode.value);
-                      Get.back();
-                      // result
-                      //     ? controller.getSingInDealerCode()
-                      //     : Get.snackbar(
-                      //         'Error',
-                      //         controller.signUpError.value,
-                      //         backgroundColor: accentColor,
-                      //         snackPosition: SnackPosition.BOTTOM,
-                      //         colorText: Colors.white,
-                      //         icon: const Icon(
-                      //           Icons.lock_person_outlined,
-                      //           color: Colors.white,
-                      //         ),
-                      //         isDismissible: true,
-                      //         margin: const EdgeInsets.all(
-                      //           defaultPadding,
-                      //         ),
-                      //       );
+          Expanded(
+            flex: 1,
+            child: Column(
+              children: [
+                Subscription(
+                  options: SubscriptionOptions(
+                    document: subscriptionShipping,
+                    variables: {
+                      "limit": 20,
+                      "offset": 0,
+                      "created_by": {
+                        "_eq": nhostClient.auth.currentUser!.id,
+                      }
                     },
-                    child: const Text(
-                      'เพิ่มขนส่ง',
-                      style: TextStyle(
-                        decoration: TextDecoration.underline,
-                        fontSize: 20,
-                        color: primaryLightColor,
+                  ),
+                  builder: (result) {
+                    // has error
+                    if (result.hasException) {
+                      return const Text('Error loading dealers data!');
+                    }
+                    //loading
+                    if (result.isLoading) {
+                      return const Center(child: CircularProgressIndicator());
+                    }
+                    //show data
+                    final shippings = (result.data!['shippings'] as List)
+                        .map((e) => ShippingResponseSubscription.fromMap(e))
+                        .toList();
+                    // print(shippings);
+                    if (shippings.isNotEmpty) {
+                      return Expanded(
+                        child: ListView.separated(
+                          separatorBuilder: (context, index) =>
+                              const SizedBox(height: defaultPadding / 2),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: defaultPadding * 3,
+                          ),
+                          itemCount: shippings.length,
+                          itemBuilder: (context, index) {
+                            return Material(
+                              color: Color(0xFFF5F5F5),
+                              child: ListTile(
+                                title: CustomText(
+                                  text: shippings[index].name,
+                                  size: 18,
+                                ),
+                                dense: false,
+                              ),
+                            );
+                          },
+                        ),
+                      );
+                    } else {
+                      return const SizedBox(
+                        width: 0,
+                      );
+                    }
+                  },
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const SizedBox(width: defaultPadding),
+                    TextButton(
+                      onPressed: () async {
+                        Get.dialog(
+                          ShippingSearchWidget(),
+                          barrierDismissible: false,
+                        );
+                      },
+                      child: const Text(
+                        'เพิ่มขนส่ง',
+                        style: TextStyle(
+                          decoration: TextDecoration.underline,
+                          fontSize: 20,
+                          color: primaryLightColor,
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              )
-            ],
+                  ],
+                ),
+              ],
+            ),
           ),
           ProfileCategoryWidget(categoryTitle: 'รหัสผ่าน'),
           const SizedBox(height: defaultPadding),
@@ -205,6 +242,8 @@ class ProfileCategoryWidget extends StatelessWidget {
   }
 }
 
+
+
 // const SizedBox(height: defaultPadding),
 // Container(
 //   decoration: BoxDecoration(
@@ -317,3 +356,26 @@ class ProfileCategoryWidget extends StatelessWidget {
 //           ),
 //         ],
 //       ),
+
+                        // list dealer with dealer_code
+                        // final result =
+                        //     await controller.listSystemLinkDealerByCode(
+                        //         controller.dealerCode.value);
+                        // Get.back();
+                        // result
+                        //     ? controller.getSingInDealerCode()
+                        //     : Get.snackbar(
+                        //         'Error',
+                        //         controller.signUpError.value,
+                        //         backgroundColor: accentColor,
+                        //         snackPosition: SnackPosition.BOTTOM,
+                        //         colorText: Colors.white,
+                        //         icon: const Icon(
+                        //           Icons.lock_person_outlined,
+                        //           color: Colors.white,
+                        //         ),
+                        //         isDismissible: true,
+                        //         margin: const EdgeInsets.all(
+                        //           defaultPadding,
+                        //         ),
+                        //       );

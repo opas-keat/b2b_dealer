@@ -136,6 +136,15 @@ class SigninView extends StatelessWidget {
                                   },
                                 ),
                               ),
+                              // CustomFlatButton(
+                              //   onPressed: () {
+                              //     Get.dialog(
+                              //       barrierDismissible: false,
+                              //       ShippingWidget(),
+                              //     );
+                              //   },
+                              //   label: 'Shipping',
+                              // ),
                               // const SizedBox(height: defaultPadding),
                               // TextButton(
                               //   onPressed: () {
