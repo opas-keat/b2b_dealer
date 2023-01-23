@@ -94,7 +94,7 @@ class ProfileController extends GetxController {
           'listShipping:: shippingInsert:' + shippingInsert.toString());
       final graphqlClient = createNhostGraphQLClient(nhostClient);
       var mutationResult = await graphqlClient.mutate(
-        MutationOptions(document: createShipping, variables: {
+        MutationOptions(document: shippingMutation, variables: {
           'shippings': shippingInsert,
         }),
       );

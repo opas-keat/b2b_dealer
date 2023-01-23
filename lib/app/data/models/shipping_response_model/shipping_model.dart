@@ -5,9 +5,16 @@ class ShippingModel {
   String? phone;
   String? mobile;
   String? note;
+  String? linkedId;
 
   ShippingModel(
-      {this.id, this.code, this.name, this.phone, this.mobile, this.note});
+      {this.id,
+      this.code,
+      this.name,
+      this.phone,
+      this.mobile,
+      this.note,
+      this.linkedId});
 
   factory ShippingModel.fromJson(Map<String, dynamic> json) => ShippingModel(
         id: json['id'] as String?,
@@ -16,6 +23,7 @@ class ShippingModel {
         phone: json['phone'] as String?,
         mobile: json['mobile'] as String?,
         note: json['note'] as String?,
+        linkedId: json['linked_id'] as String?,
       );
 
   Map<String, dynamic> toJson() => {
@@ -25,5 +33,6 @@ class ShippingModel {
         'phone': phone,
         'mobile': mobile,
         'note': note,
+        'linked_id': linkedId,
       };
 }

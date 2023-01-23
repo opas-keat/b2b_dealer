@@ -45,7 +45,7 @@ class ProfileView extends StatelessWidget {
               children: [
                 Subscription(
                   options: SubscriptionOptions(
-                    document: subscriptionShipping,
+                    document: shippingSubscription,
                     variables: {
                       "limit": 20,
                       "offset": 0,

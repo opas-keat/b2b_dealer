@@ -91,3 +91,26 @@ class DealersResponse {
         "name": name,
       };
 }
+
+class DealerModel {
+  String? id;
+  String? name;
+  String? address;
+  String? linkId;
+
+  DealerModel({this.id, this.name, this.address, this.linkId});
+
+  factory DealerModel.fromJson(Map<String, dynamic> json) => DealerModel(
+        id: json['id'] as String?,
+        name: json['name'] as String?,
+        address: json['address'] as String?,
+        linkId: json['link_id'] as String?,
+      );
+
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'name': name,
+        'address': address,
+        'link_id': linkId,
+      };
+}

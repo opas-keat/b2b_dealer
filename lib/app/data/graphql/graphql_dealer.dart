@@ -37,3 +37,14 @@ subscription DealersSubscription($id: uuid = "") {
   }
 }
 ''');
+
+final listDealersQuery = gql(r'''
+query LogsQuery($offset: Int!, $limit: Int!, $created_by: uuid!) {
+  dealers(where: {created_by: {_eq: $created_by}}, offset: $offset, limit: $limit) {
+    id
+    link_id
+    name
+    address
+  }
+}
+''');
