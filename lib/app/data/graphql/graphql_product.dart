@@ -19,6 +19,10 @@ query getProductDetail($id: uuid!) {
     model
     name
     mat_size
+    load_index
+    speed_index
+    year
+    week
   }
 }
 ''');

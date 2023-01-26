@@ -164,19 +164,24 @@ class CartController extends GetxController {
   }
 
   listCartOrder() {
-    sampleCartOrders.forEach((element) {
-      cartOrders.value.add(CartOrder(
-        fNMSysProdId: element.fNMSysProdId,
-        fTProdCode: element.fTProdCode,
-        fTProdNameTH: element.fTProdNameTH,
-        fNDealerPrice1: element.fNDealerPrice1,
-        priceCredit: element.priceCredit,
-        fNPrice: element.fNPrice,
-        fNQuantityBal: element.fNQuantityBal,
-        quantity: element.quantity,
-      ));
+    Log.loga(logTitle, 'listCartOrder:: start');
+    cartOrders.value.forEach((element) {
+      Log.loga(logTitle, 'element:: id:' + element.fNMSysProdId);
     });
+    // sampleCartOrders.forEach((element) {
+    //   cartOrders.value.add(CartOrder(
+    //     fNMSysProdId: element.fNMSysProdId,
+    //     fTProdCode: element.fTProdCode,
+    //     fTProdNameTH: element.fTProdNameTH,
+    //     fNDealerPrice1: element.fNDealerPrice1,
+    //     priceCredit: element.priceCredit,
+    //     fNPrice: element.fNPrice,
+    //     fNQuantityBal: element.fNQuantityBal,
+    //     quantity: element.quantity,
+    //   ));
+    // });
     update();
+    Log.loga(logTitle, 'listCartOrder:: end');
   }
 
   updatePaymentChannel(String value) {

@@ -104,6 +104,10 @@ class ProductResponseModel {
     required this.treadWare,
     required this.width,
     required this.matSize,
+    required this.loadIndex,
+    required this.speedIndex,
+    required this.year,
+    required this.week,
   });
 
   String id;
@@ -121,6 +125,10 @@ class ProductResponseModel {
   String treadWare;
   String width;
   String matSize;
+  String loadIndex;
+  String speedIndex;
+  String year;
+  String week;
 
   factory ProductResponseModel.fromMap(Map<String, dynamic> json) =>
       ProductResponseModel(
@@ -139,6 +147,10 @@ class ProductResponseModel {
         treadWare: json["tread_ware"],
         width: json["width"],
         matSize: json["mat_size"],
+        loadIndex: json["load_index"],
+        speedIndex: json["speed_index"],
+        year: json["year"],
+        week: json["week"],
       );
 
   Map<String, dynamic> toMap() => {
@@ -157,6 +169,10 @@ class ProductResponseModel {
         "tread_ware": treadWare,
         "width": width,
         "mat_size": matSize,
+        "load_index": loadIndex,
+        "speed_index": speedIndex,
+        "year": year,
+        "week": week,
       };
 }
 

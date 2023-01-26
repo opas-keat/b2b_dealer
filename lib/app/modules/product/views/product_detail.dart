@@ -139,7 +139,7 @@ class ProductDetailWidget extends StatelessWidget {
                   width: 200,
                   child: CustomFlatButton(
                     onPressed: () {
-                      controller.addItemToCart();
+                      controller.addItemToCart(controller.product.value);
                     },
                     label: 'เพิ่มลงรถเข็น',
                   ),

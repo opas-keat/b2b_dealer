@@ -1,8 +1,10 @@
+import 'package:b2b_dealer/app/modules/cart/controllers/cart_controller.dart';
 import 'package:get/get.dart';
 import 'package:graphql/client.dart';
 import 'package:nhost_graphql_adapter/nhost_graphql_adapter.dart';
 
 import '../../../data/graphql/graphql_product.dart';
+import '../../../data/models/cart_order.dart';
 import '../../../data/models/product_model.dart';
 import '../../../shared/constant.dart';
 import '../../../shared/utils/log_util.dart';
@@ -23,6 +25,7 @@ class ProductController extends GetxController {
 
   // cart
   RxInt cartTotalItem = 0.obs;
+  CartController cartController = Get.put(CartController());
 
   // itemCount
   // RxInt itemsCount = 0.obs;
@@ -57,8 +60,32 @@ class ProductController extends GetxController {
   //   update();
   // }
 
-  addItemToCart() {
+  addItemToCart(ProductModel product) {
+    Log.loga(logTitle, 'addItemToCart:: start');
+    Log.loga(logTitle, 'addItemToCart:: product: ' + product.name);
     cartTotalItem.value++;
+    //  sampleCartOrders.forEach((element) {
+    //   cartOrders.value.add(CartOrder(
+    //     fNMSysProdId: element.fNMSysProdId,
+    //     fTProdCode: element.fTProdCode,
+    //     fTProdNameTH: element.fTProdNameTH,
+    //     fNDealerPrice1: element.fNDealerPrice1,
+    //     priceCredit: element.priceCredit,
+    //     fNPrice: element.fNPrice,
+    //     fNQuantityBal: element.fNQuantityBal,
+    //     quantity: element.quantity,
+    //   ));
+    // });
+    cartController.cartOrders.value.add(CartOrder(
+      fNMSysProdId: product.linkId,
+      fTProdCode: product.code,
+      fTProdNameTH: product.name,
+      fNDealerPrice1: product.dealerPrice1,
+      // priceCredit: element.priceCredit,
+      fNPrice: product.price,
+      // fNQuantityBal: product.fNQuantityBal,
+      quantity: 1,
+    ));
     update();
   }
 

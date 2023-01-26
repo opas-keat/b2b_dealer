@@ -4,9 +4,9 @@ List<CartOrder> sampleCartOrders = [
     fTProdCode: "1855516DLTYLM75",
     fTProdNameTH: "ยาง DUNLOP LM705 185-55-16",
     fNDealerPrice1: 50,
-    priceCredit: 55,
+    // priceCredit: 55,
     fNPrice: 60,
-    fNQuantityBal: 10,
+    // fNQuantityBal: 10,
     quantity: 0,
   ),
   CartOrder(
@@ -14,9 +14,9 @@ List<CartOrder> sampleCartOrders = [
     fTProdCode: "1855516DLTYLM75",
     fTProdNameTH: "ยาง DUNLOP LM705 185-55-16",
     fNDealerPrice1: 50,
-    priceCredit: 55,
+    // priceCredit: 55,
     fNPrice: 50,
-    fNQuantityBal: 10,
+    // fNQuantityBal: 10,
     quantity: 0,
   ),
   CartOrder(
@@ -24,9 +24,9 @@ List<CartOrder> sampleCartOrders = [
     fTProdCode: "1855516DLTYLM75",
     fTProdNameTH: "ยาง DUNLOP LM705 185-55-16",
     fNDealerPrice1: 50,
-    priceCredit: 55,
+    // priceCredit: 55,
     fNPrice: 40,
-    fNQuantityBal: 10,
+    // fNQuantityBal: 10,
     quantity: 0,
   ),
   // CartOrder(
@@ -138,18 +138,18 @@ class CartOrder {
   String fTProdCode;
   String fTProdNameTH;
   int fNDealerPrice1;
-  int priceCredit;
+  // int priceCredit;
   int fNPrice;
-  int fNQuantityBal;
+  // int fNQuantityBal;
   int quantity;
   CartOrder({
     required this.fNMSysProdId,
     required this.fTProdCode,
     required this.fTProdNameTH,
     required this.fNDealerPrice1,
-    required this.priceCredit,
+    // required this.priceCredit,
     required this.fNPrice,
-    required this.fNQuantityBal,
+    // required this.fNQuantityBal,
     required this.quantity,
   });
 }
