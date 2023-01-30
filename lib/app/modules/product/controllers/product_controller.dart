@@ -1,4 +1,5 @@
 import 'package:b2b_dealer/app/modules/cart/controllers/cart_controller.dart';
+import 'package:b2b_dealer/app/modules/product/views/search_tires.dart';
 import 'package:get/get.dart';
 import 'package:graphql/client.dart';
 import 'package:nhost_graphql_adapter/nhost_graphql_adapter.dart';
@@ -51,6 +52,161 @@ class ProductController extends GetxController {
     super.onClose();
   }
 
+  SearchProductTires(
+    String brand,
+    String size,
+    String year,
+    String speedIndex,
+    String loadIndex,
+    String pattern,
+  ) async {
+    isLoading(true);
+    bamsList.value.clear();
+    productsList.value.clear();
+    try {
+      final whereField = WhereField();
+      if (brand.isNotEmpty) {
+        whereField.brand = FiledRegex(sRegex: brand);
+      }
+      if (size.isNotEmpty) {
+        whereField.matSize = FiledRegex(sRegex: size);
+      }
+      if (year.isNotEmpty) {
+        whereField.year = FiledEqual(sEq: year);
+      }
+      if (speedIndex.isNotEmpty) {
+        whereField.speedIndex = FiledEqual(sEq: speedIndex);
+      }
+      if (loadIndex.isNotEmpty) {
+        whereField.loadIndex = FiledEqual(sEq: loadIndex);
+      }
+      if (pattern.isNotEmpty) {
+        whereField.treadWare = FiledEqual(sEq: pattern);
+      }
+      whereField.groupCode = GroupCode(lIn: groupTires);
+      Log.loga(
+          logTitle, 'searchProductWheel:: whereField: ${whereField.toJson()}');
+
+      var result = await graphqlClient.query(
+        QueryOptions(
+          document: searchProduct,
+          variables: {
+            'where1': whereField.toJson(),
+          },
+        ),
+      );
+      if (result.hasException) {
+        Log.loga(
+            logTitle, 'searchProductWheel::hasException: ${result.exception}');
+      }
+      final response = (result.data!['products'] as List)
+          .map((e) => ProductsResponseModel.fromMap(e))
+          .toList();
+      for (var i = 0; i < response.length; i++) {
+        final url = await getImageUrl(response[i].productFiles.first.fileId);
+
+        productsList.value.add(ProductsModel(
+          id: response[i].id,
+          name: response[i].name,
+          price: response[i].price,
+          url: url,
+        ));
+      }
+      update();
+      isLoading(false);
+    } catch (e) {
+      isLoading(false);
+      Log.loga(logTitle, 'SearchProductTires:: $e');
+    }
+    Log.loga(logTitle, 'SearchProductTires:: end');
+  }
+
+  searchProductWheel(
+    String brand,
+    String size,
+    String pcd,
+    String color,
+    String priceBegin,
+    String priceEnd,
+  ) async {
+    Log.loga(logTitle, 'searchProductWheel:: start');
+    Log.loga(logTitle, 'searchProductWheel:: brand: $brand');
+    Log.loga(logTitle, 'searchProductWheel:: size: $size');
+    Log.loga(logTitle, 'searchProductWheel:: pcd: $pcd');
+    Log.loga(logTitle, 'searchProductWheel:: color: $color');
+    Log.loga(logTitle, 'searchProductWheel:: priceBegin: $priceBegin');
+    Log.loga(logTitle, 'searchProductWheel:: priceEnd: $priceEnd');
+    isLoading(true);
+    bamsList.value.clear();
+    productsList.value.clear();
+    try {
+      final whereField = WhereField();
+      if (brand.isNotEmpty) {
+        whereField.brand = FiledRegex(sRegex: brand);
+      }
+      if (size.isNotEmpty) {
+        whereField.matSize = FiledRegex(sRegex: size);
+      }
+      if (pcd.isNotEmpty) {
+        whereField.pitchCircleCode = FiledRegex(sRegex: pcd);
+      }
+      if (color.isNotEmpty) {
+        whereField.color = FiledRegex(sRegex: color);
+      }
+      if (priceBegin.isNotEmpty && priceEnd.isEmpty) {
+        whereField.price = PriceRange(
+          iGte: int.parse(priceBegin),
+          iLte: 999999,
+        );
+      } else if (priceBegin.isEmpty && priceEnd.isNotEmpty) {
+        whereField.price = PriceRange(
+          iGte: 0,
+          iLte: int.parse(priceEnd),
+        );
+      } else if (priceBegin.isNotEmpty && priceEnd.isNotEmpty) {
+        whereField.price = PriceRange(
+          iGte: int.parse(priceBegin),
+          iLte: int.parse(priceEnd),
+        );
+      }
+      whereField.groupCode = GroupCode(lIn: groupWheel);
+      Log.loga(
+          logTitle, 'searchProductWheel:: whereField: ${whereField.toJson()}');
+
+      var result = await graphqlClient.query(
+        QueryOptions(
+          document: searchProduct,
+          variables: {
+            'where1': whereField.toJson(),
+          },
+        ),
+      );
+      if (result.hasException) {
+        Log.loga(
+            logTitle, 'searchProductWheel::hasException: ${result.exception}');
+      }
+      final response = (result.data!['products'] as List)
+          .map((e) => ProductsResponseModel.fromMap(e))
+          .toList();
+      for (var i = 0; i < response.length; i++) {
+        final url = await getImageUrl(response[i].productFiles.first.fileId);
+
+        productsList.value.add(ProductsModel(
+          id: response[i].id,
+          name: response[i].name,
+          price: response[i].price,
+          url: url,
+        ));
+      }
+      update();
+      isLoading(false);
+    } catch (e) {
+      isLoading(false);
+      Log.loga(logTitle, 'searchProductWheel:: $e');
+    }
+    Log.loga(logTitle, 'searchProductWheel:: end');
+  }
+
   // minusItem() {
   //   if (itemCount.value < 1) {
   //     itemCount.value = 0;
@@ -62,7 +218,7 @@ class ProductController extends GetxController {
 
   addItemToCart(ProductModel product) {
     Log.loga(logTitle, 'addItemToCart:: start');
-    Log.loga(logTitle, 'addItemToCart:: product: ' + product.name);
+    Log.loga(logTitle, 'addItemToCart:: product: ${product.name}');
     cartTotalItem.value++;
     //  sampleCartOrders.forEach((element) {
     //   cartOrders.value.add(CartOrder(
@@ -216,7 +372,7 @@ class ProductController extends GetxController {
   listBrandAndModel() async {
     Log.loga(logTitle, 'listBrandAndModel:: start');
     Log.loga(logTitle,
-        'listBrandAndModel:: currentCategory: ' + currentCategory.value);
+        'listBrandAndModel:: currentCategory: ${currentCategory.value}');
     isLoading(true);
     bamsList.value.clear();
     try {

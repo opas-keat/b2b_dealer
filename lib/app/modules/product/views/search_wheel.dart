@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import '../../../shared/constant.dart';
@@ -11,6 +12,13 @@ class SearchWheel extends StatelessWidget {
   }) : super(key: key);
   ProductController controller = Get.find<ProductController>();
 
+  final brandTextController = TextEditingController(text: "");
+  final sizeTextController = TextEditingController();
+  final pcdTextController = TextEditingController();
+  final colorTextController = TextEditingController();
+  final priceBeginTextController = TextEditingController();
+  final priceEndTextController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -21,10 +29,22 @@ class SearchWheel extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(defaultPadding / 2),
                 child: TextField(
-                  controller: TextEditingController(text: ""),
-                  decoration: const InputDecoration(
+                  controller: brandTextController,
+                  decoration: InputDecoration(
                     labelText: 'Brand',
-                    suffixIcon: Icon(Icons.search),
+                    suffixIcon: IconButton(
+                      icon: const Icon(Icons.search),
+                      onPressed: () {
+                        controller.searchProductWheel(
+                          brandTextController.text,
+                          sizeTextController.text,
+                          pcdTextController.text,
+                          colorTextController.text,
+                          priceBeginTextController.text,
+                          priceEndTextController.text,
+                        );
+                      },
+                    ),
                   ),
                 ),
               ),
@@ -33,10 +53,22 @@ class SearchWheel extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(defaultPadding / 2),
                 child: TextField(
-                  controller: TextEditingController(text: ""),
-                  decoration: const InputDecoration(
+                  controller: sizeTextController,
+                  decoration: InputDecoration(
                     labelText: 'Size',
-                    suffixIcon: Icon(Icons.search),
+                    suffixIcon: IconButton(
+                      icon: const Icon(Icons.search),
+                      onPressed: () {
+                        controller.searchProductWheel(
+                          brandTextController.text,
+                          sizeTextController.text,
+                          pcdTextController.text,
+                          colorTextController.text,
+                          priceBeginTextController.text,
+                          priceEndTextController.text,
+                        );
+                      },
+                    ),
                   ),
                 ),
               ),
@@ -45,10 +77,22 @@ class SearchWheel extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(defaultPadding / 2),
                 child: TextField(
-                  controller: TextEditingController(text: ""),
-                  decoration: const InputDecoration(
+                  controller: pcdTextController,
+                  decoration: InputDecoration(
                     labelText: 'PCD',
-                    suffixIcon: Icon(Icons.search),
+                    suffixIcon: IconButton(
+                      icon: const Icon(Icons.search),
+                      onPressed: () {
+                        controller.searchProductWheel(
+                          brandTextController.text,
+                          sizeTextController.text,
+                          pcdTextController.text,
+                          colorTextController.text,
+                          priceBeginTextController.text,
+                          priceEndTextController.text,
+                        );
+                      },
+                    ),
                   ),
                 ),
               ),
@@ -61,10 +105,22 @@ class SearchWheel extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(defaultPadding / 2),
                 child: TextField(
-                  controller: TextEditingController(text: ""),
-                  decoration: const InputDecoration(
+                  controller: colorTextController,
+                  decoration: InputDecoration(
                     labelText: 'Color',
-                    suffixIcon: Icon(Icons.search),
+                    suffixIcon: IconButton(
+                      icon: const Icon(Icons.search),
+                      onPressed: () {
+                        controller.searchProductWheel(
+                          brandTextController.text,
+                          sizeTextController.text,
+                          pcdTextController.text,
+                          colorTextController.text,
+                          priceBeginTextController.text,
+                          priceEndTextController.text,
+                        );
+                      },
+                    ),
                   ),
                 ),
               ),
@@ -73,7 +129,11 @@ class SearchWheel extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(defaultPadding / 2),
                 child: TextField(
-                  controller: TextEditingController(text: ""),
+                  controller: priceBeginTextController,
+                  inputFormatters: <TextInputFormatter>[
+                    FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                    FilteringTextInputFormatter.digitsOnly,
+                  ],
                   decoration: const InputDecoration(
                     labelText: 'ราคาเริ่มต้น',
                   ),
@@ -85,10 +145,26 @@ class SearchWheel extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(defaultPadding / 2),
                 child: TextField(
-                  controller: TextEditingController(text: ""),
-                  decoration: const InputDecoration(
+                  controller: priceEndTextController,
+                  inputFormatters: <TextInputFormatter>[
+                    FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                    FilteringTextInputFormatter.digitsOnly,
+                  ],
+                  decoration: InputDecoration(
                     labelText: 'ราคาสิ้นสุด',
-                    suffixIcon: Icon(Icons.search),
+                    suffixIcon: IconButton(
+                      icon: const Icon(Icons.search),
+                      onPressed: () {
+                        controller.searchProductWheel(
+                          brandTextController.text,
+                          sizeTextController.text,
+                          pcdTextController.text,
+                          colorTextController.text,
+                          priceBeginTextController.text,
+                          priceEndTextController.text,
+                        );
+                      },
+                    ),
                   ),
                 ),
               ),

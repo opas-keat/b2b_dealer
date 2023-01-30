@@ -52,3 +52,37 @@ query listBrandAndModelQuery($distinct_on: [products_select_column!] = [brand,mo
   }
 }
 ''');
+
+final searchProduct = gql(r'''
+query searchProduct($where1: products_bool_exp!) {
+  products(where: $where1) {
+    ...productsFragment
+  }
+}
+
+fragment productsFragment on products {
+  color
+  mat_size
+  offset
+  pitch_circle_code
+  price
+  tread_ware
+  width
+  code
+  brand
+  dealer_price_1
+  group_code
+  id
+  link_id
+  model
+  name
+  mat_size
+  load_index
+  speed_index
+  year
+  week
+  product_files {
+    file_id
+  }
+}
+''');

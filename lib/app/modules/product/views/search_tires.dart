@@ -11,6 +11,13 @@ class SearchTires extends StatelessWidget {
   }) : super(key: key);
   ProductController controller = Get.find<ProductController>();
 
+  final brandTextController = TextEditingController(text: "");
+  final sizeTextController = TextEditingController();
+  final yearTextController = TextEditingController();
+  final speedIndexTextController = TextEditingController();
+  final loadIndexTextController = TextEditingController();
+  final patternTextController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -21,10 +28,22 @@ class SearchTires extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(defaultPadding / 2),
                 child: TextField(
-                  controller: TextEditingController(text: ""),
-                  decoration: const InputDecoration(
+                  controller: brandTextController,
+                  decoration: InputDecoration(
                     labelText: 'Brand',
-                    suffixIcon: Icon(Icons.search),
+                    suffixIcon: IconButton(
+                      icon: const Icon(Icons.search),
+                      onPressed: () {
+                        controller.SearchProductTires(
+                          brandTextController.text,
+                          sizeTextController.text,
+                          yearTextController.text,
+                          speedIndexTextController.text,
+                          loadIndexTextController.text,
+                          patternTextController.text,
+                        );
+                      },
+                    ),
                   ),
                 ),
               ),
@@ -33,10 +52,22 @@ class SearchTires extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(defaultPadding / 2),
                 child: TextField(
-                  controller: TextEditingController(text: ""),
-                  decoration: const InputDecoration(
-                    labelText: 'Size (width, ratio, diameter)',
-                    suffixIcon: Icon(Icons.search),
+                  controller: sizeTextController,
+                  decoration: InputDecoration(
+                    labelText: 'Brand',
+                    suffixIcon: IconButton(
+                      icon: const Icon(Icons.search),
+                      onPressed: () {
+                        controller.SearchProductTires(
+                          brandTextController.text,
+                          sizeTextController.text,
+                          yearTextController.text,
+                          speedIndexTextController.text,
+                          loadIndexTextController.text,
+                          patternTextController.text,
+                        );
+                      },
+                    ),
                   ),
                 ),
               ),
@@ -45,10 +76,22 @@ class SearchTires extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(defaultPadding / 2),
                 child: TextField(
-                  controller: TextEditingController(text: ""),
-                  decoration: const InputDecoration(
-                    labelText: 'Dot (ปีและเดือนที่ผลิต)',
-                    suffixIcon: Icon(Icons.search),
+                  controller: yearTextController,
+                  decoration: InputDecoration(
+                    labelText: 'Brand',
+                    suffixIcon: IconButton(
+                      icon: const Icon(Icons.search),
+                      onPressed: () {
+                        controller.SearchProductTires(
+                          brandTextController.text,
+                          sizeTextController.text,
+                          yearTextController.text,
+                          speedIndexTextController.text,
+                          loadIndexTextController.text,
+                          patternTextController.text,
+                        );
+                      },
+                    ),
                   ),
                 ),
               ),
@@ -61,10 +104,22 @@ class SearchTires extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(defaultPadding / 2),
                 child: TextField(
-                  controller: TextEditingController(text: ""),
-                  decoration: const InputDecoration(
-                    labelText: 'Speed index',
-                    suffixIcon: Icon(Icons.search),
+                  controller: speedIndexTextController,
+                  decoration: InputDecoration(
+                    labelText: 'Brand',
+                    suffixIcon: IconButton(
+                      icon: const Icon(Icons.search),
+                      onPressed: () {
+                        controller.SearchProductTires(
+                          brandTextController.text,
+                          sizeTextController.text,
+                          yearTextController.text,
+                          speedIndexTextController.text,
+                          loadIndexTextController.text,
+                          patternTextController.text,
+                        );
+                      },
+                    ),
                   ),
                 ),
               ),
@@ -73,10 +128,22 @@ class SearchTires extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(defaultPadding / 2),
                 child: TextField(
-                  controller: TextEditingController(text: ""),
-                  decoration: const InputDecoration(
-                    labelText: 'Load index',
-                    suffixIcon: Icon(Icons.search),
+                  controller: loadIndexTextController,
+                  decoration: InputDecoration(
+                    labelText: 'Brand',
+                    suffixIcon: IconButton(
+                      icon: const Icon(Icons.search),
+                      onPressed: () {
+                        controller.SearchProductTires(
+                          brandTextController.text,
+                          sizeTextController.text,
+                          yearTextController.text,
+                          speedIndexTextController.text,
+                          loadIndexTextController.text,
+                          patternTextController.text,
+                        );
+                      },
+                    ),
                   ),
                 ),
               ),
@@ -85,10 +152,22 @@ class SearchTires extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(defaultPadding / 2),
                 child: TextField(
-                  controller: TextEditingController(text: ""),
-                  decoration: const InputDecoration(
-                    labelText: 'Pattern (ดอกยาง)',
-                    suffixIcon: Icon(Icons.search),
+                  controller: patternTextController,
+                  decoration: InputDecoration(
+                    labelText: 'Brand',
+                    suffixIcon: IconButton(
+                      icon: const Icon(Icons.search),
+                      onPressed: () {
+                        controller.SearchProductTires(
+                          brandTextController.text,
+                          sizeTextController.text,
+                          yearTextController.text,
+                          speedIndexTextController.text,
+                          loadIndexTextController.text,
+                          patternTextController.text,
+                        );
+                      },
+                    ),
                   ),
                 ),
               ),
