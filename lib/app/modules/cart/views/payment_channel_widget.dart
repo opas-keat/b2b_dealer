@@ -27,7 +27,7 @@ class PaymentChannelWidget extends StatelessWidget {
             value: controller.currentPaymentChannel.value,
             isDense: true,
             // menuMaxHeight: 400,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 18,
             ),
             onChanged: (newValue) {

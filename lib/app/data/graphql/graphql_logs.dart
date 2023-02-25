@@ -7,3 +7,14 @@ mutation LogsMutation($logs: logs_insert_input!) {
   }
 }
 ''');
+
+final logsQuery = gql(r'''
+query logsQuery($created_by: uuid!, $like: String!) {
+  logs(where: {created_by: {_eq: $created_by}, detail: {_like: $like}}) {
+    detail
+    created_by
+    id
+    created_at
+  }
+}
+''');

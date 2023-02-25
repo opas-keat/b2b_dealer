@@ -50,7 +50,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.REGISTER_SUCCESS,
-      page: () => RegisterSuccessView(),
+      page: () => const RegisterSuccessView(),
       binding: RegisterSuccessBinding(),
     ),
     GetPage(

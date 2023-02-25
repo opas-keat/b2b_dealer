@@ -59,14 +59,14 @@ class SigninController extends GetxController {
           // Log.loga(title, 'signInWithEmailPassword:: ${logsCreate.toJson()}');
           // final resultCreateLog = await LogsService().createLogs(logsCreate);
           // logs with nhost
-          var mutationResult = await graphqlClient.mutate(
+          await graphqlClient.mutate(
             MutationOptions(document: createLogs, variables: {
               'logs': LogsCreateRequestModel(
                   createdBy: authResponse.user!.id,
                   detail: '${response.first.name} : $logActionLogin')
             }),
           );
-          Log.loga(title, 'signInWithEmailPassword:: logs: ${mutationResult}');
+          // Log.loga(title, 'signInWithEmailPassword:: logs: ${mutationResult}');
         }
         return true;
       }

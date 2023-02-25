@@ -11,6 +11,7 @@ import '../controllers/cart_controller.dart';
 class CartTotalWidget extends StatelessWidget {
   CartTotalWidget({super.key});
   CartController controller = Get.put(CartController());
+  // HomeController homeController = Get.find<HomeController>();
 
   @override
   Widget build(BuildContext context) {
@@ -80,6 +81,32 @@ class CartTotalWidget extends StatelessWidget {
                             label: 'ยืนยัน',
                             onPressed: () {
                               controller.confirmOrder();
+                              Get.back();
+                              // Get.dialog(
+                              //   const Center(
+                              //     child: CircularProgressIndicator(),
+                              //   ),
+                              //   barrierDismissible: false,
+                              // );
+                              // final result = await controller.confirmOrder();
+                              // Get.back();
+                              // result
+                              //     ? homeController.navIndex.value = 2
+                              //     : Get.snackbar(
+                              //         'Error',
+                              //         controller.cartError.value,
+                              //         backgroundColor: accentColor,
+                              //         snackPosition: SnackPosition.BOTTOM,
+                              //         colorText: Colors.white,
+                              //         icon: const Icon(
+                              //           Icons.lock_person_outlined,
+                              //           color: Colors.white,
+                              //         ),
+                              //         isDismissible: true,
+                              //         margin: const EdgeInsets.all(
+                              //           defaultPadding,
+                              //         ),
+                              //       );
                             },
                           ),
                         ],

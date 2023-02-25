@@ -25,8 +25,8 @@ const brandTires = ["COSMIS", "DOUBLESTAR", "ZESTINO"];
 const groupTires = ["TIRE-NEW PP"];
 
 final Map<String, String> optionPaymentChannel = {
-  '1': 'เงินสด', // ส่งค่า 7 วันไป
-  '2': 'เครดิต', // ส่งค่า 60 วันไป
+  '7': 'เงินสด', // ส่งค่า 7 วันไป
+  '60': 'เครดิต', // ส่งค่า 60 วันไป
 };
 
 const logActionLogin = "เข้าสู่ระบบ";

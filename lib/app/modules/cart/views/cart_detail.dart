@@ -20,10 +20,10 @@ class CartDetailWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
-        CustomText(
-          text: 'คำสั่งซื้อที่ ${controller.preSaleOrderNo.value}',
-          size: 20,
-        ),
+        // CustomText(
+        //   text: 'คำสั่งซื้อที่ ${controller.preSaleOrderNo.value}',
+        //   size: 20,
+        // ),
         CustomText(
           text: 'วันที่ ${DateFormat('dd/MM/yyyy').format(DateTime.now())}',
           size: 20,

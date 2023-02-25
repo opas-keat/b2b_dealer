@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../shared/constant.dart';
+import '../../home/controllers/home_controller.dart';
 import '../controllers/product_controller.dart';
 
 class ShoppingCartBadge extends StatelessWidget {
   ShoppingCartBadge({super.key});
   ProductController controller = Get.find<ProductController>();
+  HomeController homeController = Get.find<HomeController>();
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +34,7 @@ class ShoppingCartBadge extends StatelessWidget {
           icon: const Icon(Icons.shopping_cart),
           color: Colors.white,
           onPressed: () {
-            // controller.gotoCartOrder();
+            homeController.navIndex.value = 1;
           },
         ),
       ),
