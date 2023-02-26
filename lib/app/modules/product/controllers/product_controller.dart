@@ -1,9 +1,11 @@
 import 'package:b2b_dealer/app/modules/cart/controllers/cart_controller.dart';
 import 'package:b2b_dealer/app/modules/product/views/search_tires.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:graphql/client.dart';
 import 'package:nhost_graphql_adapter/nhost_graphql_adapter.dart';
 
+import '../../../data/graphql/graphql_artwork.dart';
 import '../../../data/graphql/graphql_product.dart';
 import '../../../data/models/cart_order.dart';
 import '../../../data/models/product_model.dart';
@@ -24,6 +26,8 @@ class ProductController extends GetxController {
 
   final currentName = "".obs;
 
+  Rx<String> artWorkUrl = 'assets/images/undraw_Add_files_re_v09g.png'.obs;
+
   // cart
   RxInt cartTotalItem = 0.obs;
   CartController cartController = Get.put(CartController());
@@ -37,6 +41,7 @@ class ProductController extends GetxController {
 
   @override
   void onInit() {
+    getArtWorkUrl();
     listBrandAndModel();
     // showProductDetail("", "", "", 0);
     super.onInit();
@@ -408,5 +413,40 @@ class ProductController extends GetxController {
       Log.loga(logTitle, 'listBrandAndModel:: $e');
     }
     Log.loga(logTitle, 'listBrandAndModel:: end');
+  }
+
+  getArtWorkUrl() async {
+    try {
+      final graphqlClient = createNhostGraphQLClient(nhostClient);
+      var result = await graphqlClient.query(
+        QueryOptions(
+          document: getArtWork,
+        ),
+      );
+      if (result.hasException) {
+        Log.loga(logTitle, 'getImageUrl:: ${result.exception}');
+      }
+      final fileList = (result.data!['files'] as List);
+      String fileId = fileList[0]['id'];
+      if (fileId.isNotEmpty) {
+        // Log.loga(logTitle, 'fileList:: $fileId');
+        final resultUrl = await nhostClient.storage.getPresignedUrl(fileId);
+        artWorkUrl.value = resultUrl.url;
+        // Log.loga(logTitle, 'fileList::resultUrl: ${resultUrl.url.toString()}');
+        Get.dialog(
+          barrierDismissible: true,
+          AlertDialog(
+            content: Image.network(
+              artWorkUrl.value,
+              height: 200,
+              width: 300,
+              fit: BoxFit.cover,
+            ),
+          ),
+        );
+      }
+    } catch (e) {
+      Log.loga(logTitle, 'getImageUrl error :: ${e.toString()}');
+    }
   }
 }
