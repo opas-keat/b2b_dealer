@@ -1,6 +1,6 @@
-import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:badges/badges.dart' as badges;
 
 import '../../../shared/constant.dart';
 import '../../home/controllers/home_controller.dart';
@@ -15,12 +15,15 @@ class ShoppingCartBadge extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(
-        right: defaultPadding,
+        top: defaultPadding / 2,
+        right: defaultPadding + 8,
       ),
-      child: Badge(
-        position: BadgePosition.topEnd(top: 0, end: 0),
-        animationDuration: const Duration(milliseconds: 300),
-        animationType: BadgeAnimationType.scale,
+      child: badges.Badge(
+        position: badges.BadgePosition.topEnd(),
+        badgeAnimation: const badges.BadgeAnimation.slide(
+          animationDuration: Duration(seconds: 1),
+          toAnimate: true,
+        ),
         badgeContent: Obx(
           () => Text(
             controller.cartTotalItem.value.toString(),
