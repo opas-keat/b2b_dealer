@@ -34,10 +34,10 @@ jobs:
       run: |
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD 
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag opas/b2bdealer-ui:$(date +%s)
+      run: docker build . --file Dockerfile --tag opas/b2bdealer-ui:1.0.0
       
     - name: Docker Push
-      run: docker push opas/b2bdealer-ui
+      run: docker push opas/b2bdealer-ui:1.0.0
 
     # steps:
     #   - uses: actions/checkout@v2 # Only works with v2
