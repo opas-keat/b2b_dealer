@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: dealerweb
+  name: dealerweb
+  namespace: dealer-web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dealerweb
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: dealerweb
+    spec:
+      containers:
+      - image: opas/b2bdealer-ui:1.0.0
+        name: b2bdealer-ui
+        resources: {}
+status: {}
