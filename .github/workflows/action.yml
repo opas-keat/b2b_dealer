@@ -43,4 +43,4 @@ jobs:
           context: .
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: opas/b2bdealer-ui:1.0.0
+          tags: opas/b2bdealer-ui:latest,opas/b2bdealer-ui:1.0.0

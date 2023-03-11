@@ -1,7 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  creationTimestamp: null
   labels:
     app: dealerweb
   name: dealerweb
@@ -14,12 +13,12 @@ spec:
   strategy: {}
   template:
     metadata:
-      creationTimestamp: null
       labels:
         app: dealerweb
     spec:
       containers:
-      - image: opas/b2bdealer-ui:1.0.0
+      - image: opas/b2bdealer-ui:latest
         name: b2bdealer-ui
+        imagePullPolicy: Always
         resources: {}
 status: {}
