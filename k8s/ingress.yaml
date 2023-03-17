@@ -5,6 +5,8 @@ metadata:
   name: dealerweb
   namespace: dealer-web
 spec:
+  entryPoints:
+    - websecure
   rules:
   - host: b2b.ppsuperwheels.com
     http:
