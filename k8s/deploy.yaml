@@ -4,7 +4,7 @@ metadata:
   labels:
     app: dealerweb
   name: dealerweb
-  # namespace: dealer-web
+  namespace: dealer-web
 spec:
   replicas: 1
   selector:
