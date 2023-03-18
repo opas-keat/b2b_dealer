@@ -14,7 +14,7 @@ spec:
   tls:
   - hosts:
     - b2b.ppsuperwheels.com
-    secretName: dealer-web-cert
+    secretName: dealer-web-tls
   rules:
   - host: "b2b.ppsuperwheels.com"
     http:
