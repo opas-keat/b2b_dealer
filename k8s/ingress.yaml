@@ -13,10 +13,10 @@ spec:
   ingressClassName: nginx
   tls:
   - hosts:
-    - dealer.home.local
+    - b2b.ppsuperwheels.com
     secretName: dealer-web-cert
   rules:
-  - host: dealer.home.local
+  - host: "b2b.ppsuperwheels.com"
     http:
       paths:
       - backend:
