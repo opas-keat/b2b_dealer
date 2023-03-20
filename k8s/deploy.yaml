@@ -19,6 +19,8 @@ spec:
       containers:
       - image: opas/b2bdealer-ui:latest
         name: b2bdealer-ui
+        ports:
+          - containerPort: 80
         imagePullPolicy: Always
         resources: {}
 status: {}
