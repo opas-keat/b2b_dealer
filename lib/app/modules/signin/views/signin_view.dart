@@ -175,7 +175,7 @@ class SigninView extends StatelessWidget {
                               ),
                               const SizedBox(height: defaultPadding * 2),
                               const Text(
-                                'version 1.0.0',
+                                'version 1.0.1',
                                 style: TextStyle(
                                   color: Colors.grey,
                                   fontWeight: FontWeight.w100,
